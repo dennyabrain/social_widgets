@@ -8,7 +8,6 @@
             <h1 class="text-2xl font-semibold text-gray-900">Social Widgets</h1>
             <p class="mt-1 text-sm text-gray-500">Embed social features into your static sites</p>
           </div>
-          <button
             phx-click="toggle_form"
             class="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
           >
@@ -100,7 +99,6 @@
                           class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                         />
                         <%= if length(@poll_options) > 2 do %>
-                          <button
                             type="button"
                             phx-click="remove_poll_option"
                             phx-value-index={index}
@@ -124,7 +122,6 @@
                       </div>
                     <% end %>
                   </div>
-                  <button
                     type="button"
                     phx-click="add_poll_option"
                     class="mt-3 px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
@@ -136,13 +133,11 @@
             <% end %>
 
             <div class="flex gap-3 pt-4">
-              <button
                 type="submit"
                 class="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
               >
                 Create Widget
               </button>
-              <button
                 type="button"
                 phx-click="toggle_form"
                 class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
@@ -199,7 +194,6 @@
                 Get started by creating your first widget.
               </p>
               <div class="mt-6">
-                <button
                   phx-click="toggle_form"
                   class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors"
                 >
@@ -227,6 +221,12 @@
                     </div>
                   </div>
                   <div class="flex gap-2">
+                    <.link
+                      navigate={~p"/polls/#{widget.id}"}
+                      class="px-3 py-1.5 text-xs font-medium text-gray-700 hover:text-gray-900 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                    >
+                      View Results
+                    </.link>
                     <button
                       phx-click="show_embed_code"
                       phx-value-id={widget.id}
