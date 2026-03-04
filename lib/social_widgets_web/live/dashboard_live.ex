@@ -40,7 +40,8 @@ defmodule SocialWidgetsWeb.DashboardLive do
   end
 
   @impl true
-  def handle_event("update_poll_question", %{"value" => question}, socket) do
+  def handle_event("update_poll_question", params, socket) do
+    question = params["value"] || Map.get(params, "poll_question", "")
     {:noreply, assign(socket, :poll_question, question)}
   end
 
