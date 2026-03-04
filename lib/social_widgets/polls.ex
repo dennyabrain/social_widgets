@@ -48,7 +48,6 @@ defmodule SocialWidgets.Polls do
   import Ecto.Query, warn: false
   alias SocialWidgets.Repo
   alias SocialWidgets.Polls.{PollOption, PollVote}
-  alias SocialWidgets.Widgets
   alias SocialWidgets.Polls.{PollOption, PollVote}
 
   @doc """
