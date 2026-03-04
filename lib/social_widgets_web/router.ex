@@ -18,6 +18,8 @@ defmodule SocialWidgetsWeb.Router do
     pipe_through :browser
 
     live "/", DashboardLive
+
+    live "/embed/:embed_code", PollWidgetLive
   end
 
   # Other scopes may use custom stacks.
