@@ -297,7 +297,13 @@
           </p>
           <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
             <code class="text-sm text-gray-800 font-mono break-all">
-              &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/embed/{@selected_widget.embed_code}" width="100%" height="400" frameborder="0"&gt;&lt;/iframe&gt;
+              <%= if @selected_widget.widget_type == "poll" do %>
+                &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/embed/{@selected_widget.embed_code}" width="100%" height="400" frameborder="0"&gt;&lt;/iframe&gt;
+              <% else if @selected_widget.widget_type == "whiteboard" do %>
+                &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/whiteboards/{@selected_widget.embed_code}" width="100%" height="600" frameborder="0"&gt;&lt;/iframe&gt;
+              <% else %>
+                &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/embed/{@selected_widget.embed_code}" width="100%" height="400" frameborder="0"&gt;&lt;/iframe&gt;
+              <% end %>
             </code>
           </div>
         </div>
