@@ -47,37 +47,31 @@ defmodule SocialWidgetsWeb.PollDetailLive do
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash}>
-      <div class="min-h-screen bg-gray-50">
+      <div class="min-h-screen bg-gradient-to-br from-[#f5f3e8] via-[#e8f4f5] to-[#d0cd94]/20">
         <!-- Header -->
-        <header class="bg-white border-b border-gray-200">
+        <header class="bg-gradient-to-r from-[#241623] to-[#3c787e] border-b-4 border-[#c7ef00]">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="flex items-center justify-between">
-              <div>
-                <div class="flex items-center gap-3 mb-2">
-                  <.link navigate={~p"/"} class="text-gray-500 hover:text-gray-700">
-                    <svg
-                      class="w-5 h-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 19l-7-7 7-7"
-                      />
-                    </svg>
-                  </.link>
-                  <h1 class="text-2xl font-semibold text-gray-900">{@widget.name}</h1>
+              <div class="flex items-center gap-4">
+                <.link navigate={~p"/"} class="text-white hover:text-[#c7ef00] transition-colors">
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="3"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </.link>
+                <div>
+                  <h1 class="text-2xl font-bold text-white drop-shadow-lg">📊 {@widget.name}</h1>
+                  <p class="mt-1 text-sm text-[#d0cd94] font-medium">Live poll results ✨</p>
                 </div>
-                <p class="mt-1 text-sm text-gray-500">Live poll results</p>
               </div>
-              <div class="flex gap-3">
-                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                  <span class="w-2 h-2 bg-green-600 rounded-full mr-2 animate-pulse"></span> Live
-                </span>
-              </div>
+              <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold bg-[#c7ef00] text-[#241623] border-2 border-white shadow-lg">
+                <span class="w-2 h-2 bg-[#241623] rounded-full mr-2 animate-pulse"></span> LIVE
+              </span>
             </div>
           </div>
         </header>
@@ -85,60 +79,49 @@ defmodule SocialWidgetsWeb.PollDetailLive do
     <!-- Main Content -->
         <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <!-- Poll Question Card -->
-          <div class="bg-white rounded-lg border border-gray-200 p-8 mb-6">
-            <h2 class="text-3xl font-semibold text-gray-900 mb-2">
+          <div class="bg-white rounded-2xl border-4 border-[#3c787e] p-8 mb-6 shadow-xl">
+            <h2 class="text-3xl font-bold text-[#241623] mb-3">
               {@widget.config["question"] || "Poll Question"}
             </h2>
-            <p class="text-sm text-gray-500">
-              Total votes: <span class="font-semibold text-gray-900">{@total_votes}</span>
+            <p class="text-base text-[#3c787e] font-medium">
+              Total votes: <span class="font-black text-[#241623]">{@total_votes}</span> 🗳️
             </p>
           </div>
           
     <!-- Results -->
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Results</h3>
+          <div class="bg-white rounded-2xl border-4 border-[#241623] p-6 shadow-xl">
+            <h3 class="text-xl font-black text-[#241623] mb-6">📊 Results</h3>
 
             <div class="space-y-6">
               <%= for result <- @results do %>
                 <div class="space-y-2">
                   <div class="flex justify-between items-center">
-                    <span class="text-sm font-medium text-gray-900">
+                    <span class="text-base font-bold text-[#241623]">
                       {result.option.text}
                     </span>
                     <div class="flex items-center gap-3">
-                      <span class="text-sm text-gray-500">
+                      <span class="text-sm text-[#3c787e] font-medium">
                         {result.votes} {if result.votes == 1, do: "vote", else: "votes"}
                       </span>
-                      <span class="text-sm font-semibold text-gray-900 min-w-[3rem] text-right">
+                      <span class="text-base font-black text-[#241623] min-w-[3.5rem] text-right px-3 py-1 bg-[#c7ef00] rounded-lg border-2 border-[#241623]">
                         {result.percentage}%
                       </span>
                     </div>
                   </div>
-                  <div class="w-full bg-gray-200 rounded-full h-4">
+                  <div class="w-full bg-[#d0cd94]/30 rounded-full h-6 border-2 border-[#3c787e]">
                     <div
-                      class="bg-gray-900 h-4 rounded-full transition-all duration-300 flex items-center justify-end pr-2"
+                      class="bg-gradient-to-r from-[#3c787e] to-[#c7ef00] h-full rounded-full transition-all duration-500 flex items-center justify-end pr-3"
                       style={"width: #{result.percentage}%"}
                     >
-                      <%= if result.percentage > 10 do %>
-                        <span class="text-xs font-medium text-white">{result.percentage}%</span>
+                      <%= if result.percentage > 15 do %>
+                        <span class="text-xs font-black text-white drop-shadow">
+                          {result.percentage}%
+                        </span>
                       <% end %>
                     </div>
                   </div>
                 </div>
               <% end %>
-            </div>
-          </div>
-          
-    <!-- Embed Code Section -->
-          <div class="bg-white rounded-lg border border-gray-200 p-6 mt-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-3">Embed Code</h3>
-            <p class="text-sm text-gray-600 mb-3">
-              Copy and paste this code into your HTML to embed the poll:
-            </p>
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <code class="text-sm text-gray-800 font-mono break-all">
-                &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/embed/{@widget.embed_code}" width="100%" height="400" frameborder="0"&gt;&lt;/iframe&gt;
-              </code>
             </div>
           </div>
         </main>
