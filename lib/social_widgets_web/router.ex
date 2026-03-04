@@ -22,6 +22,8 @@ defmodule SocialWidgetsWeb.Router do
     live "/polls/:id", PollDetailLive
 
     live "/embed/:embed_code", PollWidgetLive
+
+    live "/whiteboards/:embed_code", WhiteboardWidgetLive
   end
 
   # Other scopes may use custom stacks.
