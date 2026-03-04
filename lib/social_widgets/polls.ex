@@ -7,6 +7,7 @@ defmodule SocialWidgets.Polls do
   alias SocialWidgets.Repo
   alias SocialWidgets.Polls.{PollOption, PollVote}
   alias SocialWidgets.Widgets
+  alias SocialWidgets.Polls.{PollOption, PollVote}
 
   @doc """
   Creates poll options for a widget.
