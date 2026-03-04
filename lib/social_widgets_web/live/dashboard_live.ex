@@ -46,7 +46,9 @@ defmodule SocialWidgetsWeb.DashboardLive do
   end
 
   @impl true
-  def handle_event("update_poll_option", %{"index" => index, "value" => value}, socket) do
+  def handle_event("update_poll_option", params, socket) do
+    index = String.to_integer(params["index"] || "0")
+    value = params["value"] || ""
     index = String.to_integer(index)
     poll_options = List.replace_at(socket.assigns.poll_options, index, value)
     {:noreply, assign(socket, :poll_options, poll_options)}
