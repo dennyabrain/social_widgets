@@ -83,10 +83,10 @@ defmodule SocialWidgetsWeb.PollWidgetLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="min-h-screen bg-white p-6">
+    <div class="min-h-screen bg-gradient-to-br from-[#f5f3e8] to-[#e8f4f5] p-6">
       <%= if @widget do %>
         <div class="max-w-2xl mx-auto">
-          <h2 class="text-2xl font-semibold text-gray-900 mb-6">
+          <h2 class="text-2xl font-bold text-[#241623] mb-6">
             {@widget.config["question"] || "Poll"}
           </h2>
 
@@ -96,22 +96,24 @@ defmodule SocialWidgetsWeb.PollWidgetLive do
               <%= for result <- @results do %>
                 <div class="space-y-2">
                   <div class="flex justify-between items-center">
-                    <span class="text-sm font-medium text-gray-700">
+                    <span class="text-sm font-bold text-[#241623]">
                       {result.option.text}
                     </span>
-                    <span class="text-sm text-gray-500">
+                    <span class="text-sm text-[#3c787e] font-medium">
                       {result.votes} votes ({result.percentage}%)
                     </span>
                   </div>
-                  <div class="w-full bg-gray-200 rounded-full h-3">
+                  <div class="w-full bg-[#d0cd94]/30 rounded-full h-4 border-2 border-[#3c787e]">
                     <div
-                      class="bg-gray-900 h-3 rounded-full transition-all duration-300"
+                      class="bg-gradient-to-r from-[#3c787e] to-[#c7ef00] h-full rounded-full transition-all duration-300"
                       style={"width: #{result.percentage}%"}
                     />
                   </div>
                 </div>
               <% end %>
-              <p class="text-sm text-gray-500 mt-4">Total votes: {@total_votes}</p>
+              <p class="text-sm text-[#3c787e] font-medium mt-4">
+                Total votes: <span class="font-bold text-[#241623]">{@total_votes}</span> 🗳️
+              </p>
             </div>
           <% else %>
             <!-- Voting View -->
@@ -120,7 +122,7 @@ defmodule SocialWidgetsWeb.PollWidgetLive do
                 <button
                   phx-click="vote"
                   phx-value-option_id={option.id}
-                  class="w-full px-4 py-3 text-left border-2 border-gray-200 rounded-lg hover:border-gray-900 hover:bg-gray-50 transition-all text-gray-900 font-medium"
+                  class="w-full px-6 py-4 text-left border-3 border-[#3c787e] bg-white rounded-xl hover:border-[#c7ef00] hover:bg-[#c7ef00]/10 transition-all text-[#241623] font-bold transform hover:scale-105 shadow-md hover:shadow-xl"
                 >
                   {option.text}
                 </button>
@@ -130,7 +132,7 @@ defmodule SocialWidgetsWeb.PollWidgetLive do
         </div>
       <% else %>
         <div class="max-w-2xl mx-auto text-center">
-          <p class="text-gray-500">Poll not found</p>
+          <p class="text-[#3c787e] font-medium">Poll not found</p>
         </div>
       <% end %>
     </div>
