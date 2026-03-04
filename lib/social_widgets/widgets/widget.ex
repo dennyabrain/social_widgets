@@ -27,7 +27,7 @@ defmodule SocialWidgets.Widgets.Widget do
       embed_code =
         :crypto.strong_rand_bytes(8)
         |> Base.url_encode64(padding: false)
-        |> binary_part(0, 12)
+        |> String.slice(0, 12)
 
       put_change(changeset, :embed_code, embed_code)
     end
