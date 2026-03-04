@@ -37,4 +37,7 @@ defmodule SocialWidgets.Whiteboards do
 
   """
   def save_stroke(widget, stroke_data) do
-    %White
+    %WhiteboardStroke{}
+    |> WhiteboardStroke.changeset(%{
+      widget_id: widget.id,
+      
