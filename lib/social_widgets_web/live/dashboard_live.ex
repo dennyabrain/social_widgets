@@ -55,7 +55,6 @@ defmodule SocialWidgetsWeb.DashboardLive do
       end
 
     value = params["value"] || ""
-    index = String.to_integer(index)
     poll_options = List.replace_at(socket.assigns.poll_options, index, value)
     {:noreply, assign(socket, :poll_options, poll_options)}
   end
@@ -68,7 +67,6 @@ defmodule SocialWidgetsWeb.DashboardLive do
 
   @impl true
   def handle_event("remove_poll_option", %{"index" => index}, socket) do
-    index = String.to_integer(index)
     poll_options = List.delete_at(socket.assigns.poll_options, index)
     {:noreply, assign(socket, :poll_options, poll_options)}
   end
