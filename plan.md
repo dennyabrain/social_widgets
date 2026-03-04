@@ -22,13 +22,13 @@ Minimal & clean aesthetic with excellent UX focused on developers and content cr
 - [x] Build Dashboard LiveView (2 steps)
   - [x] Create DashboardLive with widget listing and creation form
   - [x] Create dashboard template with minimal design
-- [ ] Implement Poll Widget (4 steps)
-  - [ ] Generate migration for `poll_options` and `poll_votes` tables
-  - [ ] Create Polls context for poll-specific operations
-  - [ ] Create PollWidgetLive for embeddable poll interface
-  - [ ] Add PubSub broadcasting for real-time vote updates
-- [ ] Create embeddable iframe routes (1 step)
-  - [ ] Add `/embed/:embed_code` route with minimal layout
+- [x] Implement Poll Widget (4 steps)
+  - [x] Generate migration for `poll_options` and `poll_votes` tables
+  - [x] Create Polls context for poll-specific operations
+  - [x] Create PollWidgetLive for embeddable poll interface
+  - [x] Add PubSub broadcasting for real-time vote updates
+- [x] Create embeddable iframe routes (1 step)
+  - [x] Add `/embed/:embed_code` route with minimal layout
 - [x] Match layouts to minimal & clean design (2 steps)
   - [x] Update app.css with minimal theme (light mode, clean typography)
   - [x] Update root.html.heex and Layouts.app to match design
