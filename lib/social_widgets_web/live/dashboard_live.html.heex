@@ -1,18 +1,22 @@
 <Layouts.app flash={@flash}>
-  <div class="min-h-screen bg-gray-50">
+  <div class="min-h-screen bg-gradient-to-br from-[#f5f3e8] via-[#e8f4f5] to-[#d0cd94]/20">
     <!-- Header -->
-    <header class="bg-white border-b border-gray-200">
+    <header class="bg-gradient-to-r from-[#241623] to-[#3c787e] border-b-4 border-[#c7ef00] shadow-lg">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div class="flex items-center justify-between">
           <div>
-            <h1 class="text-2xl font-semibold text-gray-900">Social Widgets</h1>
-            <p class="mt-1 text-sm text-gray-500">Embed social features into your static sites</p>
+            <h1 class="text-3xl font-bold text-white drop-shadow-lg">
+              ✨ Social Widgets
+            </h1>
+            <p class="mt-1 text-sm text-[#d0cd94] font-medium">
+              Embed social features into your static sites 🚀
+            </p>
           </div>
           <button
             phx-click="toggle_form"
-            class="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
+            class="px-6 py-3 bg-[#c7ef00] text-[#241623] rounded-xl hover:bg-[#d7ff10] transition-all transform hover:scale-105 text-sm font-bold shadow-lg hover:shadow-xl"
           >
-            {if @show_form, do: "Cancel", else: "New Widget"}
+            {if @show_form, do: "❌ Cancel", else: "✨ New Widget"}
           </button>
         </div>
       </div>
@@ -22,8 +26,8 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <!-- New Widget Form -->
       <%= if @show_form do %>
-        <div class="bg-white rounded-lg border border-gray-200 p-6 mb-8">
-          <h2 class="text-lg font-semibold text-gray-900 mb-4">Create New Widget</h2>
+        <div class="bg-white rounded-2xl border-4 border-[#3c787e] p-6 mb-8 shadow-xl">
+          <h2 class="text-2xl font-bold text-[#241623] mb-4">🎨 Create New Widget</h2>
           <.form
             for={@widget_form}
             id="widget-form"
@@ -32,21 +36,21 @@
             class="space-y-4"
           >
             <div>
-              <label for="widget_name" class="block text-sm font-medium text-gray-700 mb-1">
-                Widget Name
+              <label for="widget_name" class="block text-sm font-bold text-[#241623] mb-1">
+                Widget Name ✍️
               </label>
               <.input
                 field={@widget_form[:name]}
                 type="text"
                 placeholder="e.g., Favorite Programming Language Poll"
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                error_class="border-red-400 focus:ring-red-500"
+                class="w-full px-4 py-3 border-2 border-[#3c787e] rounded-xl text-[#241623] bg-white focus:ring-4 focus:ring-[#c7ef00] focus:border-[#c7ef00] font-medium"
+                error_class="border-[#d56f3e] focus:ring-[#d56f3e]"
               />
             </div>
 
             <div>
-              <label for="widget_type" class="block text-sm font-medium text-gray-700 mb-1">
-                Widget Type
+              <label for="widget_type" class="block text-sm font-bold text-[#241623] mb-1">
+                Widget Type 🎯
               </label>
               <.input
                 field={@widget_form[:widget_type]}
@@ -56,19 +60,19 @@
                   {"Comments (Coming Soon)", "comments"},
                   {"Whiteboard", "whiteboard"}
                 ]}
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                error_class="border-red-400 focus:ring-red-500"
+                class="w-full px-4 py-3 border-2 border-[#3c787e] rounded-xl text-[#241623] bg-white focus:ring-4 focus:ring-[#c7ef00] focus:border-[#c7ef00] font-medium"
+                error_class="border-[#d56f3e] focus:ring-[#d56f3e]"
               />
             </div>
             
 <!-- Poll-specific fields -->
             <%= if @widget_form[:widget_type].value == "poll" do %>
-              <div class="border-t border-gray-200 pt-4 mt-4">
-                <h3 class="text-sm font-semibold text-gray-900 mb-3">Poll Configuration</h3>
+              <div class="border-t-2 border-[#d0cd94] pt-4 mt-4">
+                <h3 class="text-lg font-bold text-[#3c787e] mb-3">📊 Poll Configuration</h3>
 
                 <div class="mb-4">
-                  <label for="poll_question" class="block text-sm font-medium text-gray-700 mb-1">
-                    Poll Question
+                  <label for="poll_question" class="block text-sm font-bold text-[#241623] mb-1">
+                    Poll Question 🤔
                   </label>
                   <input
                     type="text"
@@ -78,13 +82,13 @@
                     phx-keyup="update_poll_question"
                     phx-debounce="300"
                     placeholder="e.g., What's your favorite programming language?"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                    class="w-full px-4 py-3 border-2 border-[#3c787e] rounded-xl text-[#241623] bg-white placeholder:text-gray-400 focus:ring-4 focus:ring-[#c7ef00] focus:border-[#c7ef00] font-medium"
                   />
                 </div>
 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">
-                    Poll Options (minimum 2)
+                  <label class="block text-sm font-bold text-[#241623] mb-2">
+                    Poll Options (minimum 2) 📝
                   </label>
                   <div class="space-y-2">
                     <%= for {option, index} <- Enum.with_index(@poll_options) do %>
@@ -97,14 +101,14 @@
                           phx-value-index={index}
                           phx-debounce="300"
                           placeholder={"Option #{index + 1}"}
-                          class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                          class="flex-1 px-4 py-3 border-2 border-[#3c787e] rounded-xl text-[#241623] bg-white placeholder:text-gray-400 focus:ring-4 focus:ring-[#c7ef00] focus:border-[#c7ef00] font-medium"
                         />
                         <%= if length(@poll_options) > 2 do %>
                           <button
                             type="button"
                             phx-click="remove_poll_option"
                             phx-value-index={index}
-                            class="px-3 py-2 text-gray-500 hover:text-red-600 border border-gray-300 rounded-lg hover:border-red-300 transition-colors"
+                            class="px-4 py-3 text-white bg-[#d56f3e] hover:bg-[#e57f4e] border-2 border-[#d56f3e] rounded-xl hover:shadow-lg transition-all transform hover:scale-105"
                           >
                             <svg
                               class="w-5 h-5"
@@ -127,9 +131,9 @@
                   <button
                     type="button"
                     phx-click="add_poll_option"
-                    class="mt-3 px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                    class="mt-3 px-6 py-3 text-[#3c787e] font-bold border-2 border-[#3c787e] rounded-xl hover:bg-[#3c787e] hover:text-white transition-all transform hover:scale-105"
                   >
-                    + Add Option
+                    ➕ Add Option
                   </button>
                 </div>
               </div>
@@ -138,14 +142,14 @@
             <div class="flex gap-3 pt-4">
               <button
                 type="submit"
-                class="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
+                class="px-6 py-3 bg-gradient-to-r from-[#3c787e] to-[#241623] text-white rounded-xl hover:from-[#4c889e] hover:to-[#34263d] transition-all transform hover:scale-105 text-sm font-bold shadow-lg hover:shadow-xl"
               >
-                Create Widget
+                🚀 Create Widget
               </button>
               <button
                 type="button"
                 phx-click="toggle_form"
-                class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
+                class="px-6 py-3 border-2 border-[#d56f3e] text-[#d56f3e] rounded-xl hover:bg-[#d56f3e] hover:text-white transition-all transform hover:scale-105 text-sm font-bold"
               >
                 Cancel
               </button>
@@ -156,73 +160,63 @@
       
 <!-- Stats -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white rounded-lg border border-gray-200 p-6">
-          <div class="text-sm text-gray-500 mb-1">Total Widgets</div>
-          <div class="text-3xl font-semibold text-gray-900">{length(@widgets)}</div>
+        <div class="bg-gradient-to-br from-[#c7ef00] to-[#d7ff10] rounded-2xl border-4 border-[#241623] p-6 shadow-xl transform hover:scale-105 transition-all">
+          <div class="text-sm text-[#241623] font-bold mb-1">📊 Total Widgets</div>
+          <div class="text-4xl font-black text-[#241623]">{length(@widgets)}</div>
         </div>
-        <div class="bg-white rounded-lg border border-gray-200 p-6">
-          <div class="text-sm text-gray-500 mb-1">Widget Types</div>
-          <div class="text-3xl font-semibold text-gray-900">
+        <div class="bg-gradient-to-br from-[#3c787e] to-[#4c889e] rounded-2xl border-4 border-[#241623] p-6 shadow-xl transform hover:scale-105 transition-all">
+          <div class="text-sm text-white font-bold mb-1">🎨 Widget Types</div>
+          <div class="text-4xl font-black text-white">
             {@widgets |> Enum.map(& &1.widget_type) |> Enum.uniq() |> length()}
           </div>
         </div>
-        <div class="bg-white rounded-lg border border-gray-200 p-6">
-          <div class="text-sm text-gray-500 mb-1">Active Today</div>
-          <div class="text-3xl font-semibold text-gray-900">-</div>
+        <div class="bg-gradient-to-br from-[#d56f3e] to-[#e57f4e] rounded-2xl border-4 border-[#241623] p-6 shadow-xl transform hover:scale-105 transition-all">
+          <div class="text-sm text-white font-bold mb-1">🔥 Active Today</div>
+          <div class="text-4xl font-black text-white">-</div>
         </div>
       </div>
       
 <!-- Widgets List -->
-      <div class="bg-white rounded-lg border border-gray-200">
-        <div class="px-6 py-4 border-b border-gray-200">
-          <h2 class="text-lg font-semibold text-gray-900">Your Widgets</h2>
+      <div class="bg-white rounded-2xl border-4 border-[#241623] shadow-xl overflow-hidden">
+        <div class="px-6 py-4 bg-gradient-to-r from-[#d0cd94] to-[#e0dd94] border-b-4 border-[#241623]">
+          <h2 class="text-2xl font-black text-[#241623]">🎪 Your Widgets</h2>
         </div>
 
-        <div class="divide-y divide-gray-200">
+        <div class="divide-y-4 divide-[#d0cd94]/30">
           <%= if @widgets == [] do %>
             <div class="px-6 py-12 text-center">
-              <svg
-                class="mx-auto h-12 w-12 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                />
-              </svg>
-              <h3 class="mt-2 text-sm font-medium text-gray-900">No widgets yet</h3>
-              <p class="mt-1 text-sm text-gray-500">
-                Get started by creating your first widget.
+              <div class="text-6xl mb-4">🎨</div>
+              <h3 class="mt-2 text-xl font-bold text-[#241623]">No widgets yet!</h3>
+              <p class="mt-1 text-sm text-[#3c787e] font-medium">
+                Get started by creating your first widget 🚀
               </p>
               <div class="mt-6">
                 <button
                   phx-click="toggle_form"
-                  class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+                  class="inline-flex items-center px-6 py-3 border-2 border-[#3c787e] rounded-xl text-sm font-bold text-[#3c787e] bg-white hover:bg-[#3c787e] hover:text-white transition-all transform hover:scale-105 shadow-lg"
                 >
-                  Create Widget
+                  ✨ Create Widget
                 </button>
               </div>
             </div>
           <% else %>
             <%= for widget <- @widgets do %>
-              <div class="px-6 py-4 hover:bg-gray-50 transition-colors">
+              <div class="px-6 py-5 hover:bg-[#d0cd94]/10 transition-all">
                 <div class="flex items-center justify-between">
                   <div class="flex-1">
                     <div class="flex items-center gap-3 mb-2">
-                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                        {String.capitalize(widget.widget_type)}
+                      <span class={"inline-flex items-center px-3 py-1 rounded-full text-xs font-black #{if widget.widget_type == "poll", do: "bg-[#c7ef00] text-[#241623]", else: "bg-[#3c787e] text-white"} border-2 border-[#241623]"}>
+                        {if widget.widget_type == "poll", do: "📊", else: "🎨"} {String.upcase(
+                          widget.widget_type
+                        )}
                       </span>
-                      <h3 class="text-sm font-medium text-gray-900">{widget.name}</h3>
+                      <h3 class="text-base font-bold text-[#241623]">{widget.name}</h3>
                     </div>
-                    <div class="flex items-center gap-4 text-xs text-gray-500">
-                      <span>Code: {widget.embed_code}</span>
+                    <div class="flex items-center gap-4 text-xs text-[#3c787e] font-medium">
+                      <span>🔑 {widget.embed_code}</span>
                       <span>•</span>
                       <span>
-                        Created {Calendar.strftime(widget.inserted_at, "%b %d, %Y")}
+                        📅 {Calendar.strftime(widget.inserted_at, "%b %d, %Y")}
                       </span>
                     </div>
                   </div>
@@ -231,20 +225,35 @@
                       <% widget.widget_type == "poll" -> %>
                         <.link
                           navigate={~p"/polls/#{widget.id}"}
-                          class="px-3 py-1.5 text-xs font-medium text-gray-700 hover:text-gray-900 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                          class="px-4 py-2 text-xs font-bold text-white bg-[#3c787e] hover:bg-[#4c889e] border-2 border-[#241623] rounded-xl hover:shadow-lg transition-all transform hover:scale-105"
                         >
-                          View Results
+                          📊 View Results
                         </.link>
                       <% widget.widget_type == "whiteboard" -> %>
                         <.link
                           navigate={~p"/whiteboards/#{widget.embed_code}"}
-                          class="px-3 py-1.5 text-xs font-medium text-gray-700 hover:text-gray-900 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                          class="px-4 py-2 text-xs font-bold text-white bg-[#3c787e] hover:bg-[#4c889e] border-2 border-[#241623] rounded-xl hover:shadow-lg transition-all transform hover:scale-105"
                         >
-                          Open Whiteboard
+                          🎨 Open Whiteboard
                         </.link>
                       <% true -> %>
-                        <span class="px-3 py-1.5 text-xs font-medium text-gray-400">N/A</span>
+                        <span class="px-4 py-2 text-xs font-medium text-gray-400">N/A</span>
                     <% end %>
+                    <button
+                      phx-click="show_embed_code"
+                      phx-value-id={widget.id}
+                      class="px-4 py-2 text-xs font-bold text-[#241623] bg-[#c7ef00] hover:bg-[#d7ff10] border-2 border-[#241623] rounded-xl hover:shadow-lg transition-all transform hover:scale-105"
+                    >
+                      🔗 Embed Code
+                    </button>
+                    <button
+                      phx-click="delete_widget"
+                      phx-value-id={widget.id}
+                      data-confirm="Are you sure you want to delete this widget?"
+                      class="px-4 py-2 text-xs font-bold text-white bg-[#d56f3e] hover:bg-[#e57f4e] border-2 border-[#241623] rounded-xl hover:shadow-lg transition-all transform hover:scale-105"
+                    >
+                      🗑️ Delete
+                    </button>
                   </div>
                 </div>
               </div>
@@ -257,34 +266,39 @@
 <!-- Embed Code Modal -->
     <%= if @selected_widget do %>
       <div
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+        class="fixed inset-0 bg-[#241623]/80 backdrop-blur-sm flex items-center justify-center p-4 z-50"
         phx-click="close_embed_modal"
       >
         <div
-          class="bg-white rounded-lg max-w-2xl w-full p-6"
+          class="bg-white rounded-2xl border-4 border-[#c7ef00] max-w-2xl w-full p-6 shadow-2xl transform scale-100"
           phx-click="stopPropagation"
         >
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold text-gray-900">Embed Code</h3>
+            <h3 class="text-2xl font-black text-[#241623]">🔗 Embed Code</h3>
             <button
               phx-click="close_embed_modal"
-              class="text-gray-400 hover:text-gray-600 transition-colors"
+              class="text-[#d56f3e] hover:text-[#e57f4e] transition-colors transform hover:scale-110"
             >
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg
+                class="h-8 w-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="3"
+              >
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
             </button>
           </div>
-          <p class="text-sm text-gray-600 mb-4">
-            Copy and paste this code into your HTML to embed the widget:
+          <p class="text-sm text-[#3c787e] font-medium mb-4">
+            📋 Copy and paste this code into your HTML to embed the widget:
           </p>
-          <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <code class="text-sm text-gray-800 font-mono break-all">
+          <div class="bg-[#d0cd94]/20 rounded-xl p-4 border-2 border-[#3c787e]">
+            <code class="text-sm text-[#241623] font-mono break-all font-bold">
               <%= cond do %>
                 <% @selected_widget.widget_type == "poll" -> %>
                   &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/embed/{@selected_widget.embed_code}" width="100%" height="400" frameborder="0"&gt;&lt;/iframe&gt;
