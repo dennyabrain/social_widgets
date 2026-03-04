@@ -87,7 +87,7 @@ defmodule SocialWidgetsWeb.WhiteboardWidgetLive do
       {:noreply,
        socket
        |> assign(:strokes, [])
-       |> push_event(socket, "clear_canvas", %{})}
+       |> push_event("clear_canvas", %{})}
     else
       {:noreply, socket}
     end
