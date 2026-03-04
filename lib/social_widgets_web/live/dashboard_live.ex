@@ -47,7 +47,13 @@ defmodule SocialWidgetsWeb.DashboardLive do
 
   @impl true
   def handle_event("update_poll_option", params, socket) do
-    index = String.to_integer(params["index"] || "0")
+    index =
+      case params["index"] do
+        i when is_integer(i) -> i
+        i when is_binary(i) -> String.to_integer(i)
+        _ -> 0
+      end
+
     value = params["value"] || ""
     index = String.to_integer(index)
     poll_options = List.replace_at(socket.assigns.poll_options, index, value)
