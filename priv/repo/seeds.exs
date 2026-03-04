@@ -40,3 +40,12 @@ IO.puts("✓ Seeded sample poll widget")
   ])
 
 IO.puts("✓ Seeded sample poll options")
+
+# Create sample whiteboard widget
+{:ok, whiteboard} =
+  Widgets.create_widget(%{
+    name: "Collaborative Drawing Board",
+    widget_type: "whiteboard"
+  })
+
+IO.puts("✓ Seeded sample whiteboard widget")
