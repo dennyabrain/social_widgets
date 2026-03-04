@@ -73,8 +73,10 @@
                   <input
                     type="text"
                     id="poll_question"
+                    name="poll_question"
                     value={@poll_question}
-                    phx-change="update_poll_question"
+                    phx-keyup="update_poll_question"
+                    phx-debounce="300"
                     placeholder="e.g., What's your favorite programming language?"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                   />
@@ -89,9 +91,11 @@
                       <div class="flex gap-2">
                         <input
                           type="text"
+                          name={"poll_option_#{index}"}
                           value={option}
-                          phx-change="update_poll_option"
+                          phx-keyup="update_poll_option"
                           phx-value-index={index}
+                          phx-debounce="300"
                           placeholder={"Option #{index + 1}"}
                           class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-900 bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                         />
