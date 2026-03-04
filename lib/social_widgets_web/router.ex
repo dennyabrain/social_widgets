@@ -19,6 +19,8 @@ defmodule SocialWidgetsWeb.Router do
 
     live "/", DashboardLive
 
+    live "/polls/:id", PollDetailLive
+
     live "/embed/:embed_code", PollWidgetLive
   end
 
