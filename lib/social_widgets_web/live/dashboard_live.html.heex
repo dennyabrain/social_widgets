@@ -227,12 +227,21 @@
                     </div>
                   </div>
                   <div class="flex gap-2">
-                    <.link
-                      navigate={~p"/polls/#{widget.id}"}
-                      class="px-3 py-1.5 text-xs font-medium text-gray-700 hover:text-gray-900 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-                    >
-                      View Results
-                    </.link>
+                    <%= if widget.widget_type == "poll" do %>
+                      <.link
+                        navigate={~p"/polls/#{widget.id}"}
+                        class="px-3 py-1.5 text-xs font-medium text-gray-700 hover:text-gray-900 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                      >
+                        View Results
+                      </.link>
+                    <% else if widget.widget_type == "whiteboard" do %>
+                      <.link
+                        navigate={~p"/whiteboards/#{widget.embed_code}"}
+                        class="px-3 py-1.5 text-xs font-medium text-gray-700 hover:text-gray-900 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                      >
+                        Open Whiteboard
+                      </.link>
+                    <% end %>
                     <button
                       phx-click="show_embed_code"
                       phx-value-id={widget.id}
