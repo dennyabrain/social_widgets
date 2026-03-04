@@ -39,5 +39,59 @@ defmodule SocialWidgets.Whiteboards do
   def save_stroke(widget, stroke_data) do
     %WhiteboardStroke{}
     |> WhiteboardStroke.changeset(%{
-      widget_id: widget.id,
-      
+      widget_id: widget.id,data
+    })
+    |> Repo.insert()
+  end
+
+  @doc """
+  Gets all strokes for a widget, ordered by creation time.
+
+  ## Examples
+
+      iex> list_strokes(widget)
+      [%WhiteboardStroke{}, ...]
+
+  """
+  def list_strokes(widget) do
+    Repo.all(
+      from s in WhiteboardStroke,
+        where: s.widget_id == ^widget.id,
+        order_by: [asc: s.inserted_at],
+        select: s.stroke_data
+    )
+  end
+
+  @doc """
+  Deletes all strokes for a widget (clear canvas).
+
+  ## Examples
+
+      iex> clear_strokes(widget)
+      {5, nil}
+
+  """
+  def clear_strokes(widget) do
+    Repo.delete_all(
+      from s in WhiteboardStroke,
+        where: s.widget_id == ^widget.id
+    )
+  end
+
+  @doc """
+  Gets the total number of strokes for a widget.
+
+  ## Examples
+
+      iex> count_strokes(widget)
+      42
+
+  """
+  def count_strokes(widget) do
+    Repo.one(
+      from s in WhiteboardStroke,
+        where: s.widget_id == ^widget.id,
+        select: count(s.id)
+    ) || 0
+  end
+end
