@@ -245,6 +245,10 @@
                       <% true -> %>
                         <span class="px-3 py-1.5 text-xs font-medium text-gray-400">N/A</span>
                     <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -281,12 +285,13 @@
           </p>
           <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
             <code class="text-sm text-gray-800 font-mono break-all">
-              <%= if @selected_widget.widget_type == "poll" do %>
-                &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/embed/{@selected_widget.embed_code}" width="100%" height="400" frameborder="0"&gt;&lt;/iframe&gt;
-              <% else if @selected_widget.widget_type == "whiteboard" do %>
-                &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/whiteboards/{@selected_widget.embed_code}" width="100%" height="600" frameborder="0"&gt;&lt;/iframe&gt;
-              <% else %>
-                &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/embed/{@selected_widget.embed_code}" width="100%" height="400" frameborder="0"&gt;&lt;/iframe&gt;
+              <%= cond do %>
+                <% @selected_widget.widget_type == "poll" -> %>
+                  &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/embed/{@selected_widget.embed_code}" width="100%" height="400" frameborder="0"&gt;&lt;/iframe&gt;
+                <% @selected_widget.widget_type == "whiteboard" -> %>
+                  &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/whiteboards/{@selected_widget.embed_code}" width="100%" height="600" frameborder="0"&gt;&lt;/iframe&gt;
+                <% true -> %>
+                  &lt;iframe src="{SocialWidgetsWeb.Endpoint.url()}/embed/{@selected_widget.embed_code}" width="100%" height="400" frameborder="0"&gt;&lt;/iframe&gt;
               <% end %>
             </code>
           </div>
