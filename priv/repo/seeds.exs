@@ -9,3 +9,21 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias SocialWidgets.Widgets
+
+# Clear existing widgets
+SocialWidgets.Repo.delete_all(SocialWidgets.Widgets.Widget)
+
+# Create sample poll widget
+{:ok, _widget} =
+  Widgets.create_widget(%{
+    name: "Favorite Programming Language Poll",
+    widget_type: "poll",
+    config: %{
+      question: "What's your favorite programming language?",
+      options: ["Elixir", "JavaScript", "Python", "Rust", "Go"]
+    }
+  })
+
+IO.puts("✓ Seeded sample poll widget")
