@@ -17,7 +17,7 @@ defmodule SocialWidgetsWeb.Router do
   scope "/", SocialWidgetsWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", DashboardLive
   end
 
   # Other scopes may use custom stacks.
