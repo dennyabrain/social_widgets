@@ -39,7 +39,8 @@ defmodule SocialWidgets.Whiteboards do
   def save_stroke(widget, stroke_data) do
     %WhiteboardStroke{}
     |> WhiteboardStroke.changeset(%{
-      widget_id: widget.id,data
+      widget_id: widget.id,
+      stroke_data: stroke_data
     })
     |> Repo.insert()
   end
