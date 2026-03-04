@@ -11,12 +11,13 @@
 # and so on) as they will fail if something goes wrong.
 
 alias SocialWidgets.Widgets
+alias SocialWidgets.Polls
 
 # Clear existing widgets
 SocialWidgets.Repo.delete_all(SocialWidgets.Widgets.Widget)
 
 # Create sample poll widget
-{:ok, _widget} =
+{:ok, widget} =
   Widgets.create_widget(%{
     name: "Favorite Programming Language Poll",
     widget_type: "poll",
@@ -27,3 +28,15 @@ SocialWidgets.Repo.delete_all(SocialWidgets.Widgets.Widget)
   })
 
 IO.puts("✓ Seeded sample poll widget")
+
+# Create poll options for the widget
+{:ok, _options} =
+  Polls.create_poll_options(widget, [
+    "Elixir",
+    "JavaScript",
+    "Python",
+    "Rust",
+    "Go"
+  ])
+
+IO.puts("✓ Seeded sample poll options")
