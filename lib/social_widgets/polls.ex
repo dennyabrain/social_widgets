@@ -1,3 +1,45 @@
+defmodule SocialWidgets.Polls.PollOption do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "poll_options" do
+    field :text, :string
+    field :votes_count, :integer, default: 0
+
+    belongs_to :widget, SocialWidgets.Widgets.Widget
+
+    timestamps()
+  end
+
+  @doc false
+  def changeset(poll_option, attrs) do
+    poll_option
+    |> cast(attrs, [:text, :widget_id, :votes_count])
+    |> validate_required([:text, :widget_id])
+  end
+end
+
+defmodule SocialWidgets.Polls.PollVote do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "poll_votes" do
+    field :voter_id, :string
+
+    belongs_to :poll_option, SocialWidgets.Polls.PollOption
+
+    timestamps()
+  end
+
+  @doc false
+  def changeset(poll_vote, attrs) do
+    poll_vote
+    |> cast(attrs, [:poll_option_id, :voter_id])
+    |> validate_required([:poll_option_id, :voter_id])
+    |> unique_constraint([:poll_option_id, :voter_id])
+  end
+end
+
 defmodule SocialWidgets.Polls do
   @moduledoc """
   The Polls context for managing poll widgets, options, and votes.
@@ -149,47 +191,5 @@ defmodule SocialWidgets.Polls do
         percentage: percentage
       }
     end)
-  end
-end
-
-defmodule SocialWidgets.Polls.PollOption do
-  use Ecto.Schema
-  import Ecto.Changeset
-
-  schema "poll_options" do
-    field :text, :string
-    field :votes_count, :integer, default: 0
-
-    belongs_to :widget, SocialWidgets.Widgets.Widget
-
-    timestamps()
-  end
-
-  @doc false
-  def changeset(poll_option, attrs) do
-    poll_option
-    |> cast(attrs, [:text, :widget_id, :votes_count])
-    |> validate_required([:text, :widget_id])
-  end
-end
-
-defmodule SocialWidgets.Polls.PollVote do
-  use Ecto.Schema
-  import Ecto.Changeset
-
-  schema "poll_votes" do
-    field :voter_id, :string
-
-    belongs_to :poll_option, SocialWidgets.Polls.PollOption
-
-    timestamps()
-  end
-
-  @doc false
-  def changeset(poll_vote, attrs) do
-    poll_vote
-    |> cast(attrs, [:poll_option_id, :voter_id])
-    |> validate_required([:poll_option_id, :voter_id])
-    |> unique_constraint([:poll_option_id, :voter_id])
   end
 end
